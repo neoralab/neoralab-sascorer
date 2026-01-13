@@ -44,4 +44,4 @@ dirty = "{base_version}+dirty"
 distance-dirty = "{base_version}.dev{distance}+dirty"
 
 [tool.versioningit.write]
-file = "src/version.py"
+file = "src/neoralab_sascorer/version.py"
