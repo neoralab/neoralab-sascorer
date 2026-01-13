@@ -13,7 +13,7 @@ authors = [
   {name = "RDKit contributors"},
 ]
 dependencies = [
-  "rdkit",
+  "rdkit>=2025.9.3",
 ]
 classifiers = [
   "Programming Language :: Python :: 3",
