@@ -40,7 +40,7 @@ from importlib import resources
 from typing import Dict, Tuple
 
 from rdkit import Chem
-from rdkit.Chem import rdMolDescriptors
+from rdkit.Chem import rdFingerprintGenerator, rdMolDescriptors
 
 _fscores: Dict[int, float] | None = None
 
@@ -94,7 +94,8 @@ def calculateScore(mol: Chem.Mol) -> float:
         raise ValueError("Mol is required")
 
     fscores = readFragmentScores()
-    fp = rdMolDescriptors.GetMorganFingerprint(mol, 2)
+    mfpgen = rdFingerprintGenerator.GetMorganGenerator(radius=2)
+    fp = mfpgen.GetCountFingerprint(mol)
     fps = fp.GetNonzeroElements()
     score1 = 0.0
     nf = 0

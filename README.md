@@ -3,15 +3,22 @@
 A small, pip-installable wrapper around RDKit's `Contrib/SA_Score` implementation for
 computing the synthetic accessibility (SA) score.
 
+## Features
+
+- Simple Python API for SMILES or RDKit molecule inputs.
+- CLI for quick SA score checks from the shell.
+- Lightweight packaging with dynamic versioning from git tags.
+
+## Requirements
+
+- Python 3.8+
+- RDKit (install via conda or ensure a compatible wheel is available for your platform)
+
 ## Installation
 
 > **Dependency**: This package requires RDKit. `pip install neoralab-sascorer` expects
 > an RDKit wheel to be available for your platform. If you prefer conda, you can install
-> RDKit via conda and then install this package:
->
-> ```bash
-> uv pip install -e .
-> ```
+> RDKit via conda and then install this package.
 
 Editable install from this repo:
 
@@ -52,6 +59,23 @@ Output format:
 
 ```
 <SMILES>\t<score>
+```
+
+## Development
+
+### Versioning
+
+This project uses `versioningit` to derive versions from git tags. For example, a
+commit after the `0.1.0` tag will produce a version like `0.1.0.dev3`.
+
+### Pre-commit
+
+Install and run pre-commit hooks locally:
+
+```bash
+uv pip install pre-commit
+pre-commit install
+pre-commit run --all-files
 ```
 
 ## Attribution
