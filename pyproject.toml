@@ -12,6 +12,11 @@ authors = [
   {name = "RDKit contributors"},
 ]
 dynamic = ["version"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: BSD License",
+  "Operating System :: OS Independent",
+]
 dependencies = [
   "rdkit>=2025.9.3",
 ]
@@ -20,11 +25,6 @@ dependencies = [
 docs = [
   "mkdocs>=1.6,<2.0",
   "mkdocs-material>=9.5,<10.0",
-]
-classifiers = [
-  "Programming Language :: Python :: 3",
-  "License :: OSI Approved :: BSD License",
-  "Operating System :: OS Independent",
 ]
 
 [project.scripts]
