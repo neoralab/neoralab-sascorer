@@ -1,0 +1,7 @@
+site_name: neoralab-sascorer
+site_description: Synthetic accessibility scoring from RDKit Contrib SA_Score
+repo_url: https://github.com/neoralab/neoralab-sascorer
+theme:
+  name: material
+nav:
+  - Home: index.md
