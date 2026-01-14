@@ -1,7 +1,16 @@
 # neoralab-sascorer
 
+[![License](https://img.shields.io/github/license/neoralab/neoralab-sascorer)](LICENSE)
+[![Python](https://img.shields.io/pypi/pyversions/neoralab-sascorer)](https://pypi.org/project/neoralab-sascorer/)
+[![PyPI](https://img.shields.io/pypi/v/neoralab-sascorer)](https://pypi.org/project/neoralab-sascorer/)
+[![Docs](https://img.shields.io/badge/docs-mkdocs-blue)](docs/index.md)
+
+![Synthetic accessibility scoring banner](assets/hero.png)
+
 A small, pip-installable wrapper around RDKit's `Contrib/SA_Score` implementation for
 computing the synthetic accessibility (SA) score.
+
+📚 **Documentation:** See the MkDocs site content in [`docs/index.md`](docs/index.md).
 
 ## Features
 
