@@ -41,8 +41,13 @@ where = ["src"]
 neoralab_sascorer = ["fpscores.pkl.gz"]
 
 [tool.versioningit]
-vcs = "git"
 default-version = "0.1.0"
+
+[tool.versioningit.vcs]
+method = "git"
+match = ["*"]
+default-tag = "0.1.0"
+untracked-files = "ignore"
 
 [tool.versioningit.format]
 distance = "{base_version}.dev{distance}"
