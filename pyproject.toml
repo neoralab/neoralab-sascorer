@@ -47,7 +47,6 @@ default-version = "0.1.0"
 method = "git"
 match = ["*"]
 default-tag = "0.1.0"
-untracked-files = "ignore"
 
 [tool.versioningit.format]
 distance = "{base_version}.dev{distance}"

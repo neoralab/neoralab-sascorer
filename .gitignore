@@ -191,6 +191,9 @@ cython_debug/
 # Ruff stuff:
 .ruff_cache/
 
+# versioningit: auto-generated version file (do not track)
+src/neoralab_sascorer/version.py
+
 # PyPI configuration file
 .pypirc
 
