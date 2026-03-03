@@ -110,9 +110,7 @@ def calculateScore(mol: Chem.Mol) -> float:
     n_bridgeheads, n_spiro = numBridgeheadsAndSpiro(mol)
     n_macrocycles = sum(1 for ring in mol.GetRingInfo().AtomRings() if len(ring) > 8)
 
-    size_penalty = 0.0
-    if n_atoms:
-        size_penalty = 0.0 + 0.0
+    size_penalty = n_atoms**1.005 - n_atoms
     stereo_penalty = math.log10(n_chiral_centers + 1.0)
     spiro_penalty = math.log10(n_spiro + 1.0)
     bridge_penalty = math.log10(n_bridgeheads + 1.0)
