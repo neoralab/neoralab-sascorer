@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -24,8 +24,26 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel build twine versioningit
 
+      - name: Verify repository is clean
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "ERROR: Repository is dirty. The following files are modified or untracked:"
+            git status --porcelain
+            exit 1
+          fi
+          echo "Repository is clean."
+
       - name: Build the Package
         run: python -m build
+
+      - name: Verify version has no local identifier
+        run: |
+          VERSION=$(python -c "import versioningit; print(versioningit.get_version('.'))")
+          echo "Package version: $VERSION"
+          if echo "$VERSION" | grep -q '+'; then
+            echo "ERROR: Version '$VERSION' contains a local version identifier (+). This is not allowed on PyPI."
+            exit 1
+          fi
 
       - name: Publish to PyPI
         env:

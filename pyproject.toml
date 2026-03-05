@@ -50,8 +50,8 @@ default-tag = "0.1.0"
 
 [tool.versioningit.format]
 distance = "{base_version}.dev{distance}"
-dirty = "{base_version}+dirty"
-distance-dirty = "{base_version}.dev{distance}+dirty"
+dirty = "{base_version}"
+distance-dirty = "{base_version}.dev{distance}"
 
 [tool.versioningit.write]
 file = "src/neoralab_sascorer/version.py"
