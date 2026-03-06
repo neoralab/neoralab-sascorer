@@ -51,7 +51,12 @@ def _resolve_scores_path(name: str) -> str:
 
 
 def readFragmentScores(name: str = "fpscores") -> Dict[int, float]:
-    """Load fragment scores from a pickled, gzipped file."""
+    """Load fragment scores from a pickled, gzipped file.
+
+    Each entry in the pickle data has the shape ``[score, frag_id_1, frag_id_2, ...]``.
+    ``entry[0]`` is the score; every subsequent element is a fragment id that maps
+    to that score.  This matches the canonical RDKit SA_Score implementation.
+    """
     global _fscores
     if _fscores is not None:
         return _fscores
@@ -67,13 +72,11 @@ def readFragmentScores(name: str = "fpscores") -> Dict[int, float]:
         with gzip.open(fname, "rb") as f:
             data = pickle.load(f)
 
+    # entry[0] = score value; entry[1:] = fragment ids that share that score.
     out_dict: Dict[int, float] = {}
     for entry in data:
-        if isinstance(entry, Tuple) or isinstance(entry, list):
-            if len(entry) >= 2:
-                out_dict[int(entry[0])] = float(entry[1])
-        else:
-            raise ValueError("Invalid fragment score entry")
+        for j in range(1, len(entry)):
+            out_dict[entry[j]] = float(entry[0])
 
     _fscores = out_dict
     return _fscores
@@ -95,7 +98,7 @@ def calculateScore(mol: Chem.Mol) -> float:
 
     fscores = readFragmentScores()
     mfpgen = rdFingerprintGenerator.GetMorganGenerator(radius=2)
-    fp = mfpgen.GetCountFingerprint(mol)
+    fp = mfpgen.GetSparseCountFingerprint(mol)
     fps = fp.GetNonzeroElements()
     score1 = 0.0
     nf = 0
